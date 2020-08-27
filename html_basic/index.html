@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table,
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Paragraph, heading, formatting -->
+    <p>Paragraph: Lorem, ipsum <mark>dolor</mark> sit amet consectetur adipisicing elit. Temporibus neque ab, ducimus ipsam dolorum eligendi repudiandae eum nesciunt nemo aperiam corrupti aut adipisci modi provident? Vero, nobis rem. Dolore, corrupti.</p>
+    <h1>Heading h1</h1>
+    <h2>Heading h2</h2>
+    ...
+    <h4>Heading h4</h4>
+    <h6>Heading h6</h6>
+    <mark>Mark</mark>
+    <mark>Mark</mark>
+    <sup>Sup</sup>
+    <sub>Sub</sub>
+    <br> Example(Math): a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup>
+    <br> Example(Chemistry): H<sub>2</sub>O
+    <br>
+    <strong>Tô Đậm</strong>
+    <b>Tô Đậm</b>
+    <em>Nghiêng</em>
+    <i>Nghiêng</i>
+    <p> <ins>Nghiêng</ins> not <del>Nghiên</del></p>
+    <p> Parent <span style="color: red">Child</span> Parent </p>
+    <p> Parent
+        <div style="color: red">Child</div> Parent </p>
+    <!-- block -->
+    <div>Div</div>
+    <!-- inline -->
+    <span>Span</span>
+    <br>-----------------------
+    <br>
+
+    <!-- link -->
+    <a id="go-to-google" href="https://google.com.vn" target="blank">Link: Go to google</a>
+    <a href="https://fb.com" target="_self">Link: Go to Facebook</a>
+    <a href="./about.html">Go to About</a>
+    <a href="/html_basic/about.html">Go to About</a>
+    <!-- images -->
+    <img width="100px" height="100px" src="https://blog.prezi.com/wp-content/uploads/2019/03/jason-leung-479251-unsplash.jpg" alt="Background image">
+    <img src="/html_basic/images/bg.jpg" alt="">
+    <img src="./images/bg.jpg" alt="">
+    <!-- <img src="F:\T3H2\demo\mrdatngo.github.io\EcoLolo\images\logo.png" alt=""> -->
+
+    <!-- Lists -->
+    <ul style="list-style-type: square;">
+        <li>Hà Nội</li>
+        <li>Tp HCM</li>
+        <li>Nha Trang</li>
+    </ul>
+    <ol type="I">
+        <li>Đà Nẵng</li>
+        <li>Hà Nội</li>
+        <li>Tp HCM</li>
+    </ol>
+    <!-- table -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student name</th>
+                <th colspan="2">Grade + Class</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Do Nguyen Toai</td>
+                <td>A</td>
+                <td rowspan="3">ReactJS</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Le Khanh Quang</td>
+                <td>A</td>
+                <!-- <td>ReactJS</td> -->
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Duc Nhan</td>
+                <td>A</td>
+                <!-- <td>ReactJS</td> -->
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- HTML Layout -->
+    <!-- <div id="header">
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+            <li>Maps</li>
+        </ul>
+    </div> -->
+    <header>
+        <ul>
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+            <li>Maps</li>
+        </ul>
+    </header>
+    <section>
+        <nav>
+            Navigation
+        </nav>
+        <article>
+            <h3>Post</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem cupiditate veniam totam tempore sequi quisquam quis reprehenderit iure deserunt ullam? Blanditiis placeat laboriosam aliquid ipsum quia. Corrupti voluptas illum veritatis.</p>
+        </article>
+    </section>
+    <footer>Footer</footer>
+
+    <!-- form -->
+    <form action="/server.js" method="POST">
+        <input name="email" type="text" placeholder="Email or phone number">
+        <input name="password" type="password" placeholder="Password">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>
