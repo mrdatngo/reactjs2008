@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         table,
         tr,
@@ -132,11 +133,51 @@
     <footer>Footer</footer>
 
     <!-- form -->
-    <form action="/server.js" method="POST">
-        <input name="email" type="text" placeholder="Email or phone number">
-        <input name="password" type="password" placeholder="Password">
-        <input type="submit" value="Submit">
+    <form action="/server.js" method="GET">
+        <fieldset>
+            <legend>Input</legend>
+            <input id="mail" name="email" type="text" placeholder="Email or phone number">
+            <input id="password" name="password" type="password" placeholder="Password">
+            <input type="email" name="email" id="email" placeholder="Enter email">
+            <input type="number" name="age" id="age" min=0 max=10 placeholder="Enter age">
+        </fieldset>
+
+        <label for="dayOfBirth">Ngày sinh</label>
+        <select name="dayOfBirth" id="">
+            <optgroup label="Spring">
+                <option value="1">Jan</option>
+                <option value="2">Feb</option>
+                <option value="3">March</option>
+            </optgroup>
+            <optgroup label="Summber">
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+            </optgroup>
+        </select>
+        <br>
+        <label for="gender">Gender</label>
+        <br>
+        <label for="male">Male</label> <input id="male" name="gender" type="radio">
+        <br>
+        <label for="female">Female</label> <input id="female" name="gender" type="radio">
+        <br>
+        <input id="policy" type="checkbox">
+        <label for="policy">Bạn có đồng ý với chính sách của công ty!</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
     </form>
+
+    <!-- Media tags -->
+    <audio controls src="audio/KhongThuocVe.mp3"></audio>
+    <video src=""></video>
+    <span class="fa fa-500px"></span>
+    <i class="fa fa-500px" style="font-size:24px"></i>
+    <i class="fa fa-500px" style="font-size:36px"></i>
+    <i class="fa fa-500px" style="font-size:48px;color:red"></i>
+    <canvas width="500" height="500" style="border: 1px solid black">
+        Your browers is not support canvas
+    </canvas>
+    <br><br><br><br><br><br><br><br>
 </body>
 
 </html>

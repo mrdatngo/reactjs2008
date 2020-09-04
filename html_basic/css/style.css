@@ -1,0 +1,70 @@
+/* p {
+    color: blue;
+} */
+
+
+/* article,
+p,
+h3,
+h4,
+body {
+    margin: 0;
+    padding: 0;
+} */
+
+
+/* reset browser */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.primary-color {
+    color: blue;
+}
+
+#my-p {
+    color: green;
+}
+
+.border-solid {
+    border: 1px solid black;
+}
+
+article p {
+    color: red;
+}
+
+article>p {
+    border: 1px solid red;
+}
+
+p,
+div {
+    font-size: 24px;
+}
+
+article~p {
+    background-color: bisque;
+}
+
+article p {
+    color: blue;
+}
+
+.article p {
+    color: red;
+}
+
+article.article p {
+    color: green;
+}
+
+#article p {
+    color: purple;
+}
+
+article#article p {
+    color: silver;
+}
