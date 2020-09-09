@@ -1,0 +1,166 @@
+.block-sm {
+    width: 100px;
+    height: 100px;
+}
+
+.bg-dark {
+    background-color: grey;
+}
+
+.display-block {
+    display: block;
+}
+
+[class="block-sm bg-dark"] {
+    border: 2px solid red;
+}
+
+[class~="block-sm"] {
+    font-size: 40px;
+}
+
+[class~="block-sm"] {
+    font-size: 40px;
+}
+
+[class^="block"] {
+    color: blue;
+}
+
+[class$="light"] {
+    color: red;
+}
+
+[class*="bg-dar"] {
+    padding: 50px;
+}
+
+.pointer:hover {
+    cursor: pointer;
+}
+
+a:link {
+    color: yellow;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: red;
+}
+
+a:active {
+    color: green;
+}
+
+.text-center {
+    text-align: center;
+}
+
+table,
+td {
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td:first-of-type {
+    color: blue;
+}
+
+
+/* td:first-child {
+    color: blue;
+} */
+
+td:last-child {
+    color: red;
+}
+
+
+/* td:nth-child(2) {
+    color: yellow;
+} */
+
+td:nth-last-child(2) {
+    color: purple;
+}
+
+.my-para::first-letter {
+    font-size: 100px;
+}
+
+.my-para::first-line {
+    color: blue;
+}
+
+.my-para::selection {
+    color: blue;
+}
+
+.my-para::before {
+    content: "ABC";
+}
+
+.my-para::after {
+    content: "After";
+}
+
+input:focus {
+    /* background-color: rgb(255, 0, 0); */
+    background-color: #F0F;
+}
+
+
+/* .checkbox:checked {
+    background: yellow;
+} */
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.parent {
+    /* float: left; */
+    margin: 0;
+    width: 50%;
+    height: 100px;
+    background-color: yellow;
+    border: 0px solid red;
+    /* margin: 0 auto; */
+    display: inline-block;
+}
+
+.child {
+    width: 50%;
+    height: 50%;
+    background-color: blue;
+    border: inherit;
+}
+
+p {
+    text-shadow: 10px 10px grey;
+    /* border-bottom-color: red;
+    border-bottom-style: dotted;
+    border-bottom-width: 3px; */
+    border-bottom: 3px dotted red;
+}
+
+h1 {
+    text-align: center;
+    margin: 50px;
+    padding: 50px;
+    border: 1px solid red;
+}
+
+h2 {
+    margin: 30px;
+    padding: 30px;
+    border: 1px solid yellow;
+}
