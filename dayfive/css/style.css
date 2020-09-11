@@ -1,0 +1,178 @@
+.block-sm {
+    width: 100px;
+    height: 100px;
+}
+
+.bg-red {
+    background-color: red;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.bg-blue {
+    background-color: blue;
+}
+
+.display-inline {
+    display: inline;
+}
+
+.display-inline-block {
+    display: inline-block;
+}
+
+
+/* div {
+    list-style-position: inside;
+    display: list-item;
+} */
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+header,
+footer {
+    color: white;
+    height: 100px;
+    background-color: black;
+}
+
+aside {
+    float: left;
+    width: 40%;
+    height: 400px;
+    background-color: grey;
+    /* display: inline-block; */
+}
+
+article {
+    float: left;
+    width: 60%;
+    height: 800px;
+    background-color: blanchedalmond;
+    /* display: inline-block; */
+}
+
+section::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+
+/* Postion */
+
+.parent {
+    width: 500px;
+    height: 500px;
+    position: relative;
+}
+
+.child {
+    position: relative;
+    width: 300px;
+    height: 200px;
+}
+
+.first-child {
+    position: relative;
+    /* position: absolute; */
+    /* position: fixed; */
+    left: 100px;
+    top: 100px;
+}
+
+.overflow {
+    overflow: auto;
+}
+
+
+/* media */
+
+
+/* @media only screen and (min-width: 1024px) {
+    article {
+        background-color: yellow;
+    }
+} */
+
+@media only screen and (max-width: 768px) and (min-width: 400px) {
+    aside {
+        display: none;
+    }
+    article {
+        width: 100%;
+    }
+}
+
+
+/* translate */
+
+.overflow {
+    /* transform: translate(10px, 10px); */
+    /* transform: rotate(45deg); */
+    /* transform: rotateX(45deg); */
+    /* transform: scale(1.5, 1.5); */
+}
+
+.overflow:hover {
+    transform: translate(10px, 10px) rotate(45deg) scale(1.5, 1.5);
+    transition: transform 1s ease-in-out 0s;
+}
+
+input {
+    width: 50px;
+}
+
+input:focus {
+    width: 500px;
+    transition: width 1s ease-in-out 0s;
+}
+
+
+/* animations */
+
+.animation {
+    position: relative;
+    animation: slide 1s ease-in-out 1s infinite normal forwards;
+}
+
+@keyframes slide {
+    /* from {
+        left: 0;
+        top: 0;
+    }
+    to {
+        left: 300px;
+        top: 300px;
+    } */
+    0% {
+        background-color: red;
+        left: 0;
+        top: 0;
+    }
+    25% {
+        background-color: green;
+        left: 300px;
+        top: 0;
+    }
+    50% {
+        background-color: blue;
+        left: 300px;
+        top: 300px;
+    }
+    75% {
+        background-color: black;
+        left: 0;
+        top: 300px;
+    }
+    100% {
+        background-color: red;
+        left: 0;
+        top: 0;
+    }
+}
