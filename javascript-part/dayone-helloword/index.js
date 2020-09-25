@@ -197,17 +197,18 @@ var name = "Nhan"
 // hello("World", "Developer")
 // hello("My Friends", "Tester")
 
-function changeNumber() {
+function changeNumber(number) {
     number = 3
+    // tuyen.name = "HIHI"
 }
 
-function changeName(name) {
-    name = "Linh"
-}
+// function changeName(name) {
+//     name = "Linh"
+// }
 
-function changeStudent(student) {
-    student.name = "Van Tuyen"
-}
+// function changeStudent(student) {
+//     student.name = "Van Tuyen"
+// }
 
 var number = 5;
 var name = "Nhan";
@@ -216,14 +217,41 @@ var tuyen = {
     age: 20
 }
 
-var nga = tuyen;
-nga.name = "Nga";
-console.log("Nga: ", nga);
-console.log("Tuyen: ", tuyen);
+// var tuyen2 = {
+//     ...tuyen
+// }
 
+// var nga = tuyen;
+// nga.name = "Nga";
+// console.log("Nga: ", nga);
+console.log("Tuyen: ", tuyen);
+console.log("Tuyen2: ", tuyen2);
 changeNumber(number);
 changeName(name);
-changeStudent(tuyen);
+changeStudent(tuyen2);
 console.log("Number: ", number);
 console.log("Name: ", name);
 console.log("Student: ", tuyen);
+console.log("Tuyen2: ", tuyen2);
+
+// ex 8
+// console.log("************")
+// var n = 1313131313131 // => BigInt/Xu ly string
+// var check = true
+// while (n > 0) {
+//     console.log("I'm In")
+//     var remain = n % 10
+//     console.log("I'm In", remain, "n: ", n)
+//     if (remain % 2 == 0) {
+//         check = false;
+//         break;
+//     }
+//     n = Math.floor(n / 10)
+//     console.log("n: ", n, "remain: ", remain)
+// }
+// if (check) {
+//     alert("N is combine of odd numbers")
+// } else {
+//     alert("N is not OKE")
+// }
+
