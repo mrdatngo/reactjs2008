@@ -26,6 +26,108 @@
 //     }
 // }
 
+class Header extends React.Component {
+    constructor(props) {
+        super(props);
+        // console.log("Props: ", props);
+    }
+    render() {
+        return (
+            <header
+                style={{
+                    backgroundColor:
+                        this.props.numberOfGuessed >= 7 ? "yellow" : "white",
+                }}
+                className="jumbotron text-center"
+            >
+                <h3>Guessing random number</h3>
+                <p>
+                    Tôi đã random một số trong khoảng 1 đến 100, đố bạn đoán
+                    được!
+                </p>
+            </header>
+        );
+    }
+}
+
+class Main extends React.Component {
+    constructor(props) {
+        super(props);
+        // console.log("props: ", props);
+        this.state = {
+            // numberOfGuessed: 0,
+            randomNumber: this.random(),
+            currentNumber: 0,
+            message: "",
+        };
+        // this.guessing = this.guessing.bind(this);
+    }
+
+    newGame = () => {
+        this.setState({
+            // numberOfGuessed: 0,
+            randomNumber: this.random(),
+            currentNumber: 0,
+            message: "",
+        });
+    };
+
+    random = () => {
+        return Math.round(Math.random() * 100) + 1;
+    };
+
+    guessing = () => {
+        // this.state.numberOfGuessed++; never do like this
+        // let currentNumber = this.state.currentNumber;
+        // let randomNumber = this.state.randomNumber;
+        let { currentNumber, randomNumber } = this.state;
+        let message = "";
+        if (currentNumber > randomNumber) {
+            // alert("You're guessing bigger number");
+            message = "You're guessing bigger number";
+        } else if (currentNumber < randomNumber) {
+            message = "Your're guesssing smaller number";
+        } else {
+            message = "Congrats!";
+        }
+        this.setState({
+            // numberOfGuessed: this.state.numberOfGuessed + 1,
+            message: message,
+        });
+        this.props.increaseNumberOfGuessed();
+    };
+
+    onValueChange = (event) => {
+        this.setState({
+            currentNumber: Number(event.target.value),
+        });
+    };
+
+    render() {
+        let { randomNumber, currentNumber, message } = this.state;
+        let { numberOfGuessed } = this.props;
+        return (
+            <article>
+                <button onClick={this.newGame}>New game</button>
+                <hr />
+                <p>Số lần bạn đã đoán là: {numberOfGuessed}</p>
+                <p>Số bạn đoán là: </p>
+                <input
+                    type="number"
+                    min="1"
+                    max="100"
+                    onChange={this.onValueChange}
+                    value={currentNumber}
+                />
+                <button onClick={this.guessing} className="btn-success">
+                    Đoán
+                </button>
+                <p>{message}</p>
+            </article>
+        );
+    }
+}
+
 class App extends React.Component {
     constructor() {
         super();
@@ -33,38 +135,18 @@ class App extends React.Component {
             numberOfGuessed: 0,
         };
     }
-
-    guessing = () => {
-        // this.state.numberOfGuessed++;
-        this.setState({
-            numberOfGuessed: this.state.numberOfGuessed + 1,
-        });
-        console.log("numberOfGuessed: ", this.state.numberOfGuessed);
+    increaseNumberOfGuessed = () => {
+        this.setState({ numberOfGuessed: this.state.numberOfGuessed + 1 });
     };
-
     render() {
-        console.log("DRAWING.....");
         return (
-            <div>
-                <header className="jumbotron text-center">
-                    <h3>Guessing random number</h3>
-                    <p>
-                        Tôi đã random một số trong khoảng 1 đến 100, đố bạn đoán
-                        được!
-                    </p>
-                </header>
-                <article>
-                    <button>New game</button>
-                    <hr />
-                    <p>Số lần bạn đã đoán là: {this.state.numberOfGuessed}</p>
-                    <p>Số bạn đoán là: </p>
-                    <input type="text" />
-                    <button onClick={this.guessing} className="btn-success">
-                        Đoán
-                    </button>
-                    <p>Notify</p>
-                </article>
-            </div>
+            <React.Fragment>
+                <Header numberOfGuessed={this.state.numberOfGuessed}></Header>
+                <Main
+                    numberOfGuessed={this.state.numberOfGuessed}
+                    increaseNumberOfGuessed={this.increaseNumberOfGuessed}
+                ></Main>
+            </React.Fragment>
         );
     }
 }
