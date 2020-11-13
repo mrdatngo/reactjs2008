@@ -1,0 +1,12 @@
+.login-form {
+    border: 1px solid black
+}
+
+.login-form label {
+    padding: 10px;
+    line-height: 30px;
+}
+
+.login-form {
+    text-align: center;
+}
