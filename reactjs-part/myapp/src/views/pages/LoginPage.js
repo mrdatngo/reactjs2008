@@ -12,6 +12,7 @@ class LoginPage extends Component {
                 remember: false,
                 organization: "",
             },
+            message: "",
         };
     }
 
@@ -36,18 +37,26 @@ class LoginPage extends Component {
 
     submit = () => {
         const { data } = this.state;
-        auth.login(data).then((result) => {
-            console.log("result");
-        });
+        this.setState({ message: "Loading...." });
+        auth.login(data)
+            .then((result) => {
+                console.log("result: ", result);
+                this.setState({ message: "Logged In" });
+            })
+            .catch((err) => {
+                console.log("err: ", err);
+                this.setState({ message: "Log In failed!" });
+            });
     };
 
     render() {
-        const { data } = this.state;
+        const { data, message } = this.state;
         console.log(data);
         return (
             <form className={"login-form"}>
                 <legend style={{ fontWeight: "bold" }}>Login</legend>
                 <br />
+                <p>{message}</p>
                 <label htmlFor="username">User name</label>
                 <input
                     type="text"
