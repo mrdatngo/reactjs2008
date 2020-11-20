@@ -1,9 +1,9 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import DefaultLayout from "./views/layouts/DefaultLayout";
 function App() {
     return (
         <Router>
-            <ul>
+            {/* <ul>
                 <li>
                     <Link to="/home">Home</Link>
                 </li>
@@ -13,14 +13,13 @@ function App() {
                 <li>
                     <a href="/about">About</a>
                 </li>
-            </ul>
+            </ul> */}
             <Switch>
-                <Route exact path="/">
-                    Route All
-                </Route>
                 <Route path="/login">Login</Route>
-                <Route path="/home">Home</Route>
-                <Route paht="/">Page not found</Route>
+                <Route path="/page404">Page not found</Route>
+                <Route path="/">
+                    <DefaultLayout />
+                </Route>
             </Switch>
         </Router>
     );
