@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Clock from "./views/components/Clock";
 import LoginPage from "./views/pages/LoginPage";
+import Counter from "./redux/Counter";
 
 // class App extends React.Component {
 //     constructor() {
@@ -50,7 +51,8 @@ import LoginPage from "./views/pages/LoginPage";
 function App() {
     return (
         <div>
-            <LoginPage />
+            {/* <LoginPage /> */}
+            <Counter />
         </div>
     );
 }
