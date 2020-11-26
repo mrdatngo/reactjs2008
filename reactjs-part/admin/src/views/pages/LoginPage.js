@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Card, Form, Input, Button, Checkbox } from "antd";
 
 import { login } from "../../actions/auth";
+import { connect } from "react-redux";
 
 const layout = {
     labelCol: { span: 8 },
@@ -11,7 +12,7 @@ const tailLayout = {
     wrapperCol: { span: 24 },
 };
 
-export default class LoginPage extends Component {
+class LoginPage extends Component {
     onFinish = (values) => {
         // console.log("Success:", values);
         // call actions login
@@ -84,6 +85,7 @@ export default class LoginPage extends Component {
                     >
                         <Checkbox>Remember me</Checkbox>
                     </Form.Item> */}
+                    <p>{this.props.message}</p>
 
                     <Form.Item {...tailLayout}>
                         <Button type="primary" htmlType="submit">
@@ -95,3 +97,13 @@ export default class LoginPage extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    console.log("state: ", state);
+    return {
+        isLoggedIn: state.isLoggedIn,
+        message: state.message,
+    };
+}
+
+export default connect(mapStateToProps)(LoginPage);
