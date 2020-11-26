@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Card, Form, Input, Button, Checkbox } from "antd";
 
+import { login } from "../../actions/auth";
+
 const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
@@ -11,7 +13,9 @@ const tailLayout = {
 
 export default class LoginPage extends Component {
     onFinish = (values) => {
-        console.log("Success:", values);
+        // console.log("Success:", values);
+        // call actions login
+        login(values);
     };
 
     onFinishFailed = (errorInfo) => {
@@ -41,12 +45,18 @@ export default class LoginPage extends Component {
                                 message: "Please input your username!",
                             },
                             {
-                                validator: (rule, value, callback) => {
+                                validator: (_, value) => {
                                     if (value && value.length < 3) {
-                                        callback(
+                                        return Promise.reject(
                                             "Name length must bigger than 3!"
                                         );
                                     }
+                                    if (value && value.length > 24) {
+                                        return Promise.reject(
+                                            "Name length must smaller than 24!"
+                                        );
+                                    }
+                                    return Promise.resolve();
                                 },
                             },
                         ]}
@@ -67,13 +77,13 @@ export default class LoginPage extends Component {
                         <Input.Password />
                     </Form.Item>
 
-                    <Form.Item
+                    {/* <Form.Item
                         {...tailLayout}
                         name="remember"
                         valuePropName="checked"
                     >
                         <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
+                    </Form.Item> */}
 
                     <Form.Item {...tailLayout}>
                         <Button type="primary" htmlType="submit">
