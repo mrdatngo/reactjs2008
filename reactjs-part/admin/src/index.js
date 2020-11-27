@@ -7,6 +7,13 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 
 import store from "./store";
+import { getToken } from "./utils/localStorageHandler";
+
+var token = getToken();
+if (!token) {
+    console.log("token: ", token);
+    // window.location = "/login";
+}
 
 ReactDOM.render(
     <Provider store={store}>

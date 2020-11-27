@@ -1,18 +1,20 @@
 import { auth } from "../apis";
+import { saveToken } from "../utils/localStorageHandler";
 
-import store from "../store";
-
-export const login = (data) => {
-    console.log("starting login action");
+export const login = (data) => (dispatch) => {
+    dispatch({ type: "LOGGIN" });
     auth.login(data)
         .then((resp) => {
             console.log("resp: ", resp);
-            // dispatch to store
-            store.dispatch({ type: "LOGGIN_SUCCESS" });
+            dispatch({
+                type: "LOGGIN_SUCCESS",
+                payload: { token: resp.data.token },
+            });
+            saveToken(resp.data.token);
+            window.location = "/";
         })
         .catch((err) => {
-            console.log("err: ", err);
-            // dispatch to store
-            store.dispatch({ type: "LOGGIN_FAILED" });
+            // console.log("err: ", err);
+            dispatch({ type: "LOGGIN_FAILED" });
         });
 };

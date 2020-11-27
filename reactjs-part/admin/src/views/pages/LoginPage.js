@@ -16,7 +16,7 @@ class LoginPage extends Component {
     onFinish = (values) => {
         // console.log("Success:", values);
         // call actions login
-        login(values);
+        this.props.login(values);
     };
 
     onFinishFailed = (errorInfo) => {
@@ -88,7 +88,11 @@ class LoginPage extends Component {
                     <p>{this.props.message}</p>
 
                     <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
+                        <Button
+                            loading={this.props.loading}
+                            type="primary"
+                            htmlType="submit"
+                        >
                             Submit
                         </Button>
                     </Form.Item>
@@ -103,7 +107,8 @@ function mapStateToProps(state) {
     return {
         isLoggedIn: state.isLoggedIn,
         message: state.message,
+        loading: state.loading,
     };
 }
 
-export default connect(mapStateToProps)(LoginPage);
+export default connect(mapStateToProps, { login })(LoginPage);
