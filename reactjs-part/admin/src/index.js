@@ -1,18 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import "./index.css";
 import "antd/dist/antd.css";
+import jwt from "jsonwebtoken";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-
 import store from "./store";
 import { getToken } from "./utils/localStorageHandler";
 
 var token = getToken();
-if (!token) {
-    console.log("token: ", token);
-    // window.location = "/login";
+if (token) {
+    const data = jwt.decode(token);
+    const now = new Date().getTime() / 1000; // convert to timestamp in seconds
+    if (data.exp > now) {
+        store.dispatch({
+            type: "LOGGIN_SUCCESS",
+            payload: { token, username: data.username },
+        });
+    }
 }
 
 ReactDOM.render(

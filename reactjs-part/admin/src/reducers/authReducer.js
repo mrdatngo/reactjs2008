@@ -20,6 +20,7 @@ export default function authReducer(state = initialState, action = {}) {
                 isLoggedIn: true,
                 loading: false,
                 token: action.payload.token,
+                username: action.payload.username,
                 message: "Logged in success",
             };
         case "LOGGIN_FAILED":

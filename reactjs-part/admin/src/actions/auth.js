@@ -11,7 +11,7 @@ export const login = (data) => (dispatch) => {
                 payload: { token: resp.data.token },
             });
             saveToken(resp.data.token);
-            window.location = "/";
+            // window.location = "/";
         })
         .catch((err) => {
             // console.log("err: ", err);

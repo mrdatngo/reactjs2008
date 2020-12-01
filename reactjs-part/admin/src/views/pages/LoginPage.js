@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { Card, Form, Input, Button, Checkbox } from "antd";
+import { Card, Form, Input, Button } from "antd";
 
 import { login } from "../../actions/auth";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const layout = {
     labelCol: { span: 8 },
@@ -24,7 +25,10 @@ class LoginPage extends Component {
     };
 
     render() {
-        return (
+        const { isLoggedIn } = this.props;
+        return isLoggedIn ? (
+            <Redirect to="/" />
+        ) : (
             <Card
                 size="small"
                 title="Login"
@@ -102,12 +106,11 @@ class LoginPage extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    console.log("state: ", state);
+function mapStateToProps({ auth }) {
     return {
-        isLoggedIn: state.isLoggedIn,
-        message: state.message,
-        loading: state.loading,
+        isLoggedIn: auth.isLoggedIn,
+        message: auth.message,
+        loading: auth.loading,
     };
 }
 

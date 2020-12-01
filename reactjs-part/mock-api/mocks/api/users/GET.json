@@ -1,0 +1,19 @@
+{
+    "success": true,
+    "data": [{
+            "id": "RJ1",
+            "name": "Vu Quang Phong",
+            "class": "REACTJS"
+        },
+        {
+            "id": "RJ2",
+            "name": "Nguyen Thi Nga",
+            "class": "REACTJS"
+        },
+        {
+            "id": "RJ3",
+            "name": "Ha Huy Tuyen",
+            "class": "REACTJS"
+        }
+    ]
+}

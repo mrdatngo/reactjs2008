@@ -1,3 +1,6 @@
+import AddUser from "./views/components/users/AddUser";
+import ListUser from "./views/components/users/ListUser";
+
 const routers = [
     {
         name: "Option1",
@@ -6,21 +9,21 @@ const routers = [
         component: <h3>Option1</h3>,
     },
     {
-        name: "User",
-        path: "/user",
+        name: "Users",
+        path: "/users",
         icon: "",
         children: [
             {
-                name: "Tom",
-                path: "/user/tom",
+                name: "Add user",
+                path: "/users/add",
                 icon: "",
-                component: "TOM",
+                component: <AddUser />,
             },
             {
-                name: "Jerry",
-                path: "/user/jerry",
+                name: "List user",
+                path: "/users/list",
                 icon: "",
-                component: "Jerry",
+                component: <ListUser />,
             },
         ],
     },
