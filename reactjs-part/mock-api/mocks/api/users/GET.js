@@ -36,6 +36,12 @@ module.exports = (req, res) => {
     if (!key) {
         key = "";
     }
+    if (!page) {
+        page = 1;
+    }
+    if (!pageSize) {
+        pageSize = 10;
+    }
     let filterUsers = users.filter((user) =>
         user.name.toLowerCase().includes(key.toLowerCase())
     );
