@@ -1,31 +1,9 @@
 import React, { Component } from "react";
-import { Table, Tag, Space } from "antd";
+import { Table, Tag, Space, Input } from "antd";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../../actions/users";
 
-const data = [
-    {
-        key: "1",
-        name: "John Brown",
-        age: 32,
-        address: "New York No. 1 Lake Park",
-        tags: ["nice", "developer"],
-    },
-    {
-        key: "2",
-        name: "Jim Green",
-        age: 42,
-        address: "London No. 1 Lake Park",
-        tags: ["loser"],
-    },
-    {
-        key: "3",
-        name: "Joe Black",
-        age: 32,
-        address: "Sidney No. 1 Lake Park",
-        tags: ["cool", "teacher"],
-    },
-];
+const { Search } = Input;
 
 class ListUser extends Component {
     constructor() {
@@ -33,69 +11,105 @@ class ListUser extends Component {
         this.state = {
             columns: [
                 {
+                    title: "ID",
+                    dataIndex: "id",
+                    key: "id",
+                },
+                {
                     title: "Name",
                     dataIndex: "name",
                     key: "name",
                     render: (text) => <a>{text}</a>,
                 },
                 {
-                    title: "Age",
-                    dataIndex: "age",
-                    key: "age",
-                },
-                {
-                    title: "Address",
-                    dataIndex: "address",
-                    key: "address",
-                },
-                {
-                    title: "Tags",
-                    key: "tags",
-                    dataIndex: "tags",
-                    render: (tags) => (
-                        <>
-                            {tags.map((tag) => {
-                                let color =
-                                    tag.length > 5 ? "geekblue" : "green";
-                                if (tag === "loser") {
-                                    color = "volcano";
-                                }
-                                return (
-                                    <Tag color={color} key={tag}>
-                                        {tag.toUpperCase()}
-                                    </Tag>
-                                );
-                            })}
-                        </>
+                    title: "Marks",
+                    key: "mark",
+                    dataIndex: "marks",
+                    render: () => (
+                        <Tag color={"red"} key={"1"}>
+                            1
+                        </Tag>
                     ),
                 },
                 {
                     title: "Action",
                     key: "action",
-                    render: (text, record) => (
+                    render: () => (
                         <Space size="middle">
-                            <a>Invite {record.name}</a>
+                            <a>View</a>
+                            <a>Edit</a>
                             <a>Delete</a>
                         </Space>
                     ),
                 },
             ],
+            key: "",
+            current: 1,
+            pageSize: 2,
         };
     }
 
     componentDidMount() {
-        this.props.fetchUsers();
+        const { key, current, pageSize } = this.state;
+        this.props.fetchUsers({ key, current, pageSize });
     }
 
+    onFetchUsers = (key, current) => {
+        // const { key, current } = this.state;
+        const { pageSize } = this.state;
+        this.props.fetchUsers({ key, current, pageSize });
+    };
+
+    onPageChange = (current) => {
+        this.setState({ current });
+        this.onFetchUsers(this.state.key, current);
+    };
+
+    onSearch = (key) => {
+        this.setState({ key, current: 1 });
+        this.onFetchUsers(key, 1);
+    };
+
+    onSearchChange = (event) => {
+        let key = event.target.value;
+        if (!key) {
+            key = "";
+        }
+        this.onSearch(key);
+    };
+
     render() {
-        const { columns } = this.state;
-        // const { data } = this.props;
-        return <Table columns={columns} dataSource={data} />;
+        const { columns, current, pageSize } = this.state;
+        const { list } = this.props;
+        return (
+            <>
+                <Search
+                    placeholder="input search text"
+                    onSearch={this.onSearch}
+                    onChange={this.onSearchChange}
+                    enterButton
+                    style={{ width: 300, margin: "10px 0" }}
+                />
+                <Table
+                    loading={list.loading}
+                    columns={columns}
+                    dataSource={list.users}
+                    pagination={{
+                        pageSize,
+                        current,
+                        total: list.total,
+                        onChange: this.onPageChange,
+                    }}
+                />
+            </>
+        );
     }
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        list: state.users.list,
+    };
 }
 
 export default connect(mapStateToProps, { fetchUsers })(ListUser);

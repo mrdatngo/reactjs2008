@@ -80,12 +80,15 @@ class DefaultLayout extends React.Component {
                             <Switch>
                                 {routers.map((menu) => {
                                     return !menu.children ? (
-                                        <Route path={menu.path}>
+                                        <Route key={menu.path} path={menu.path}>
                                             {menu.component}
                                         </Route>
                                     ) : (
                                         menu.children.map((subMenu) => (
-                                            <Route path={subMenu.path}>
+                                            <Route
+                                                key={menu.path}
+                                                path={subMenu.path}
+                                            >
                                                 {subMenu.component}
                                             </Route>
                                         ))

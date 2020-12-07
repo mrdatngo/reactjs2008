@@ -1,18 +1,19 @@
 import { users } from "../apis";
+import * as type from "../const/ActionTypes";
 
 export const fetchUsers = (data) => (dispatch) => {
-    dispatch({ type: "FETCH_USERS" });
+    dispatch({ type: type.FETCH_USERS });
     users
         .fetchUsers(data)
         .then((resp) => {
-            console.log("resp: ", resp);
+            // console.log("resp: ", resp);
             dispatch({
-                type: "FETCH_USERS_SUCCESS",
-                // payload: { token: resp.data.token },
+                type: type.FETCH_USERS_SUCCESS,
+                payload: { users: resp.data.data, total: resp.data.total },
             });
         })
         .catch((err) => {
             // console.log("err: ", err);
-            dispatch({ type: "FETCH_USERS_FAILED" });
+            dispatch({ type: type.FETCH_USERS_FAILED });
         });
 };
