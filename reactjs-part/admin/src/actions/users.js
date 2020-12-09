@@ -17,3 +17,27 @@ export const fetchUsers = (data) => (dispatch) => {
             dispatch({ type: type.FETCH_USERS_FAILED });
         });
 };
+
+export const addUser = (data) => (dispatch) => {
+    dispatch({ type: type.ADD_USER });
+    users
+        .addUser(data)
+        .then((resp) => {
+            // console.log("resp: ", resp);
+            dispatch({
+                type: type.ADD_USER_SUCCESS,
+                payload: {
+                    message: "Add user success!",
+                },
+            });
+        })
+        .catch((err) => {
+            // console.log("err: ", err);
+            dispatch({
+                type: type.ADD_USER_FAILED,
+                payload: {
+                    message: "Add user failed",
+                },
+            });
+        });
+};

@@ -5,3 +5,7 @@ export const LOGGIN_FAILED = "LOGGIN_FAILED";
 export const FETCH_USERS = "FETCH_USERS";
 export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
 export const FETCH_USERS_FAILED = "FETCH_USERS_FAILED";
+
+export const ADD_USER = "ADD_USER";
+export const ADD_USER_SUCCESS = "ADD_USER_SUCCESS";
+export const ADD_USER_FAILED = "ADD_USER_FAILED";

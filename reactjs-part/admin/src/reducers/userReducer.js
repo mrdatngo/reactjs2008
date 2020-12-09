@@ -5,6 +5,11 @@ const initialState = {
         total: 0,
         loading: false,
     },
+    addUser: {
+        loading: false,
+        success: false,
+        message: "",
+    },
 };
 
 export default function usersReducer(state = initialState, action = {}) {
@@ -35,6 +40,36 @@ export default function usersReducer(state = initialState, action = {}) {
                     ...state.list,
                     loading: false,
                     users: [],
+                },
+            };
+        case type.ADD_USER:
+            return {
+                ...state,
+                addUser: {
+                    ...state.addUser,
+                    loading: true,
+                    message: "",
+                    success: false,
+                },
+            };
+        case type.ADD_USER_SUCCESS:
+            return {
+                ...state,
+                addUser: {
+                    ...state.addUser,
+                    loading: false,
+                    message: action.payload.message,
+                    success: true,
+                },
+            };
+        case type.ADD_USER_FAILED:
+            return {
+                ...state,
+                addUser: {
+                    ...state.addUser,
+                    loading: false,
+                    message: action.payload.message,
+                    success: false,
                 },
             };
     }
