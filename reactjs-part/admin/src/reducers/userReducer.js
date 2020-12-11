@@ -10,6 +10,12 @@ const initialState = {
         success: false,
         message: "",
     },
+    getUser: {
+        id: "",
+        loading: false,
+        success: false,
+        message: "",
+    },
 };
 
 export default function usersReducer(state = initialState, action = {}) {
@@ -69,6 +75,37 @@ export default function usersReducer(state = initialState, action = {}) {
                     ...state.addUser,
                     loading: false,
                     message: action.payload.message,
+                    success: false,
+                },
+            };
+        case type.GET_USER:
+            return {
+                ...state,
+                getUser: {
+                    ...state.getUser,
+                    loading: true,
+                    success: false,
+                    message: "",
+                },
+            };
+        case type.GET_USER_SUCCESS:
+            return {
+                ...state,
+                getUser: {
+                    ...state.getUser,
+                    loading: false,
+                    message: "Get user success",
+                    user: action.payload.user,
+                    success: true,
+                },
+            };
+        case type.GET_USER_FAILED:
+            return {
+                ...state,
+                getUser: {
+                    ...state.getUser,
+                    loading: false,
+                    message: "Get user failed",
                     success: false,
                 },
             };

@@ -23,20 +23,69 @@ export const addUser = (data) => (dispatch) => {
     users
         .addUser(data)
         .then((resp) => {
-            // console.log("resp: ", resp);
-            dispatch({
-                type: type.ADD_USER_SUCCESS,
-                payload: {
-                    message: "Add user success!",
-                },
-            });
+            if (resp.data && resp.data.success && resp.data.message) {
+                dispatch({
+                    type: type.ADD_USER_SUCCESS,
+                    payload: {
+                        message: resp.data.message,
+                    },
+                });
+            } else {
+                dispatch({
+                    type: type.ADD_USER_FAILED,
+                    payload: {
+                        message: "Something went wrong!",
+                    },
+                });
+            }
         })
         .catch((err) => {
-            // console.log("err: ", err);
+            console.log("err: ", err.response);
+            let message = "Add user failed";
+            if (err.response && err.response.statusText) {
+                message = err.response.statusText;
+            }
             dispatch({
                 type: type.ADD_USER_FAILED,
                 payload: {
-                    message: "Add user failed",
+                    message,
+                },
+            });
+        });
+};
+
+export const getUser = (id) => (dispatch) => {
+    dispatch({ type: type.GET_USER });
+    users
+        .getUser(id)
+        .then((resp) => {
+            console.log(resp);
+            if (resp.data && resp.data.success) {
+                dispatch({
+                    type: type.GET_USER_SUCCESS,
+                    payload: {
+                        user: resp.data.user,
+                    },
+                });
+            } else {
+                dispatch({
+                    type: type.GET_USER_FAILED,
+                    payload: {
+                        message: "Something went wrong!",
+                    },
+                });
+            }
+        })
+        .catch((err) => {
+            console.log("err: ", err.response);
+            let message = "Add user failed";
+            if (err.response && err.response.statusText) {
+                message = err.response.statusText;
+            }
+            dispatch({
+                type: type.GET_USER_FAILED,
+                payload: {
+                    message,
                 },
             });
         });

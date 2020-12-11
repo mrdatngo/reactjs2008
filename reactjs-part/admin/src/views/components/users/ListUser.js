@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Table, Tag, Space, Input } from "antd";
 import { connect } from "react-redux";
 import { fetchUsers } from "../../../actions/users";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const { Search } = Input;
 
@@ -34,10 +36,11 @@ class ListUser extends Component {
                 {
                     title: "Action",
                     key: "action",
-                    render: () => (
+                    render: ({ id }) => (
                         <Space size="middle">
                             <a>View</a>
-                            <a>Edit</a>
+                            <a onClick={() => this.onEditUser(id)}>Edit</a>
+                            <Link to={`/users/edit/${id}`}>Edit</Link>
                             <a>Delete</a>
                         </Space>
                     ),
@@ -45,9 +48,16 @@ class ListUser extends Component {
             ],
             key: "",
             current: 1,
-            pageSize: 2,
+            pageSize: 5,
         };
     }
+
+    onEditUser = (id) => {
+        console.log(id);
+        setTimeout(() => {
+            this.props.history.push(`/users/edit/${id}`);
+        }, 2000);
+    };
 
     componentDidMount() {
         const { key, current, pageSize } = this.state;
@@ -106,10 +116,19 @@ class ListUser extends Component {
     }
 }
 
+ListUser.propTypes = {
+    fetchUsers: PropTypes.func.isRequired,
+    list: PropTypes.shape({
+        total: PropTypes.number.isRequired,
+        loading: PropTypes.bool.isRequired,
+        users: PropTypes.array.isRequired,
+    }),
+};
+
 function mapStateToProps(state) {
     return {
         list: state.users.list,
     };
 }
 
-export default connect(mapStateToProps, { fetchUsers })(ListUser);
+export default connect(mapStateToProps, { fetchUsers })(withRouter(ListUser));
