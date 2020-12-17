@@ -6,4 +6,14 @@ export default {
             }, 500);
         });
     },
+    getPageInfo: () => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
+                    author: "ReactJS2008",
+                    phone: "09xxxxxxx",
+                });
+            }, 1000);
+        });
+    },
 };
