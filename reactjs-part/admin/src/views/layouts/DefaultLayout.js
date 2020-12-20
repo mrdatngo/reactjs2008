@@ -1,13 +1,6 @@
-import React, { Component } from "react";
+import React, { Suspense } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import { Layout, Menu, Breadcrumb } from "antd";
-import {
-    DesktopOutlined,
-    PieChartOutlined,
-    FileOutlined,
-    TeamOutlined,
-    UserOutlined,
-} from "@ant-design/icons";
 
 import routers from "../../routers";
 
@@ -15,9 +8,13 @@ const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
 class DefaultLayout extends React.Component {
-    state = {
-        collapsed: false,
-    };
+    constructor() {
+        super();
+        this.state = {
+            collapsed: false,
+            location: window.location.pathname,
+        };
+    }
 
     onCollapse = (collapsed) => {
         console.log(collapsed);
@@ -25,7 +22,7 @@ class DefaultLayout extends React.Component {
     };
 
     render() {
-        const { collapsed } = this.state;
+        const { collapsed, location } = this.state;
         return (
             <Layout style={{ minHeight: "100vh" }}>
                 <Sider
@@ -36,18 +33,18 @@ class DefaultLayout extends React.Component {
                     <div className="logo" />
                     <Menu
                         theme="dark"
-                        defaultSelectedKeys={["1"]}
+                        defaultSelectedKeys={[location]}
                         mode="inline"
                     >
                         {routers.map((menu) =>
                             !menu.children ? (
-                                <Menu.Item key="1" icon={<PieChartOutlined />}>
+                                <Menu.Item key={menu.path} icon={menu.icon}>
                                     <Link to={menu.path}>{menu.name}</Link>
                                 </Menu.Item>
                             ) : (
                                 <SubMenu
                                     key={menu.path}
-                                    icon={<UserOutlined />}
+                                    icon={menu.icon}
                                     title={menu.name}
                                 >
                                     {menu.children.map(
@@ -81,24 +78,29 @@ class DefaultLayout extends React.Component {
                             style={{ padding: 24, minHeight: 360 }}
                         >
                             <Switch>
-                                {routers.map((menu) => {
-                                    return !menu.children ? (
-                                        <Route key={menu.path} path={menu.path}>
-                                            {menu.component}
-                                        </Route>
-                                    ) : (
-                                        menu.children.map((subMenu) => (
+                                <Suspense fallback={"loading..."}>
+                                    {routers.map((menu) => {
+                                        return !menu.children ? (
                                             <Route
                                                 key={menu.path}
-                                                path={subMenu.path}
+                                                path={menu.path}
                                             >
-                                                {subMenu.component}
+                                                {menu.component}
                                             </Route>
-                                        ))
-                                    );
-                                })}
-                                {/* <Route path="/option1">Option1 content</Route>
+                                        ) : (
+                                            menu.children.map((subMenu) => (
+                                                <Route
+                                                    key={menu.path}
+                                                    path={subMenu.path}
+                                                >
+                                                    {subMenu.component}
+                                                </Route>
+                                            ))
+                                        );
+                                    })}
+                                    {/* <Route path="/option1">Option1 content</Route>
                                 <Route path="/user/tom">User Tom</Route> */}
+                                </Suspense>
                             </Switch>
                         </div>
                     </Content>

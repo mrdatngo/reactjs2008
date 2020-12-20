@@ -16,7 +16,9 @@ function AddUser({ addUser, addUserState, getUser, getUserState }) {
 
     useEffect(() => {
         console.log("params: ", params);
-        getUser(params.id);
+        if (params.id) {
+            getUser(params.id);
+        }
     }, []);
 
     useEffect(() => {

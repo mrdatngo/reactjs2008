@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import "antd/dist/antd.css";
 import jwt from "jsonwebtoken";
+import axios from "axios";
 
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
@@ -19,6 +20,7 @@ if (token) {
             type: "LOGGIN_SUCCESS",
             payload: { token, username: data.username },
         });
+        axios.defaults.headers.common.authorization = `Bearer ${token}`;
     }
 }
 

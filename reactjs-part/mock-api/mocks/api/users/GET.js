@@ -32,8 +32,28 @@
 // ];
 
 var fs = require("fs");
+var jwt = require("jsonwebtoken");
 
 module.exports = (req, res) => {
+    let token = req.header("authorization");
+    if (!token) {
+        res.status(401).json({
+            success: false,
+            message: "Unauthorized!",
+        });
+        return;
+    }
+    try {
+        const tokenStr = token.split(" ")[1];
+        jwt.verify(tokenStr, "REACTJS2008");
+    } catch (err) {
+        res.status(401).json({
+            success: false,
+            message: "Unauthorized!",
+        });
+        return;
+    }
+    console.log("req");
     fs.readFile("users.json", function (err, data) {
         var usersDataStr = String(data);
         var usersData = JSON.parse(usersDataStr);

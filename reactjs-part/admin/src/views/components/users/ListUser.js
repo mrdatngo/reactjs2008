@@ -50,6 +50,7 @@ class ListUser extends Component {
             current: 1,
             pageSize: 5,
         };
+        this.onSearchDebounce = this.debounce(this.onSearch, 1000);
     }
 
     onEditUser = (id) => {
@@ -85,7 +86,30 @@ class ListUser extends Component {
         if (!key) {
             key = "";
         }
-        this.onSearch(key);
+        this.onSearchDebounce(key);
+    };
+
+    // debounce = (func, wait) => {
+    //     let timeout;
+    //     return (key) => {
+    //         clearTimeout(timeout);
+    //         timeout = setTimeout(() => {
+    //             func(key);
+    //         }, wait);
+    //     };
+    // };
+
+    debounce = (func, wait) => {
+        var timeout;
+        return function () {
+            const context = this;
+            var args = arguments;
+            var executeFunction = function () {
+                func.apply(context, args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(executeFunction, wait);
+        };
     };
 
     render() {
