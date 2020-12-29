@@ -1,12 +1,14 @@
 import React, { Suspense } from "react";
 import { Switch, Route, Link } from "react-router-dom";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout, Menu, Select } from "antd";
 
 import routers from "../../routers";
 
+// import "../../styles/components/header.css";
+
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-
+const { Option } = Select;
 class DefaultLayout extends React.Component {
     constructor() {
         super();
@@ -67,7 +69,21 @@ class DefaultLayout extends React.Component {
                     <Header
                         className="site-layout-background"
                         style={{ padding: 0 }}
-                    />
+                    >
+                        <div id="flex-container">
+                            <div className="p-l-sm">
+                                <Select
+                                    // onChange={onStatusChange}
+                                    style={{ width: "100%" }}
+                                    defaultValue="en"
+                                >
+                                    <Option value="en">English</Option>
+                                    <Option value="vi">Viet Nam</Option>
+                                </Select>
+                            </div>
+                            <div>MrDat</div>
+                        </div>
+                    </Header>
                     <Content style={{ margin: "0 16px" }}>
                         {/* <Breadcrumb style={{ margin: "16px 0" }}>
                             <Breadcrumb.Item>User</Breadcrumb.Item>

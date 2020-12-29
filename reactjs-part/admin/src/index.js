@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import "./index.css";
 import "antd/dist/antd.css";
+import "./styles/global/style.scss";
 import jwt from "jsonwebtoken";
 import axios from "axios";
 

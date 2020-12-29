@@ -1,0 +1,13 @@
+#flex-container {
+    display: flex;
+    justify-content: space-between;
+    div {
+        color: #f1f1f1;
+        width: 100px;
+        text-align: center;
+        line-height: 64px;
+    }
+    #flex-container .ant-select-selector {
+        background-color: $primaryColor;
+    }
+}

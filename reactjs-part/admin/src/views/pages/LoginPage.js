@@ -14,14 +14,22 @@ const tailLayout = {
 };
 
 class LoginPage extends Component {
+    componentDidUpdate() {
+        if (this.props.message && this.userInputRef) {
+            this.userInputRef.focus();
+        }
+    }
+
     onFinish = (values) => {
         // console.log("Success:", values);
         // call actions login
         this.props.login(values);
+        this.userInputRef = null;
     };
 
     onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
+        this.userInputRef.focus();
     };
 
     render() {
@@ -66,7 +74,11 @@ class LoginPage extends Component {
                             },
                         ]}
                     >
-                        <Input />
+                        <Input
+                            ref={(input) => {
+                                this.userInputRef = input;
+                            }}
+                        />
                     </Form.Item>
 
                     <Form.Item
